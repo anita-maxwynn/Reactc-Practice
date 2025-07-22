@@ -2,7 +2,7 @@ import os
 import re
 
 base_dir = './'  # Adjust if needed
-output_file = 'All_Days_Combined.md'
+output_file = 'README.md'
 day_folders = sorted(
     [f for f in os.listdir(base_dir) if re.match(r'day\d+$', f)],
     key=lambda x: int(re.search(r'\d+', x).group())

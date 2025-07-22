@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="day1">day1</h1>
+<h1 id="introduction">Introduction</h1>
+<p>React Js Is a Javascript LIbrary for building frontend application or UI
+The main reason to use it is it's reusable ui components</p>
+<h2 id="advantages-of-reactjs">Advantages of ReactJS</h2>
+<ul>
+<li>Reusable Components</li>
+<li>Open source</li>
+<li>Efficient and Fast</li>
+<li>Works in Browser</li>
+<li>Vast Community</li>
+</ul>
+<h1 id="how-reactjs-works">How ReactJs works</h1>
+<ul>
+<li>Creates a Virtual Dom</li>
+<li>This Guy checks all the time what has changed with it's past self with the present code and change only them</li>
+<li>So the other things don't change</li>
+<li>So the application acts as a single page application(working without reloading)</li>
+<li></li>
+</ul>
+<h1 id="day2">day2</h1>
+<h1 id="react-requirements">React Requirements:-</h1>
+<ul>
+<li>NPM:- It is a js packagemanager. It is used to take advantages of third party packages and easily install or update them.</li>
+<li>Webpack:- It is a static moule bundler for modern js application. When webpack processes the application , it  internally builds a dependency graph which maps every modelue the project needs and generates one or more bundles</li>
+<li>Babel - It's a toolchain that is mainly used to convert ecmascript code into backward compatible versiob of js in currecnt and older browsers.</li>
+</ul>
+<hr>
+<h1 id="how-to-create-react-application-without-using-babel-webpackcdn-links-and-jsx">How to create react application without using babel webpack,cdn links and jsx</h1>
+<ul>
+<li>React.createElement(type,props,children)
+<ul>
+<li>type-&gt; type of html element or component</li>
+<li>props -&gt; properties of the object</li>
+<li>children -&gt; anything need to be put between the dom elements</li>
+</ul>
+</li>
+<li>render() -&gt; It is the only required method in a class component . It examines this.props and this.state .  it returns one of the following types:
+<ul>
+<li>React elements -&gt; these are created via jsx</li>
+<li>array and fragments -&gt; React can't return multiple elements together so they use arrays.</li>
+</ul>
+</li>
+<li>ReactDOM.render(element,DOMnode)-&gt;
+<ul>
+<li>element:- which element u want to render</li>
+<li>DOMnode:- where u want to render</li>
+<li><img src="day2/image.png" alt="ReactDOM.render example"></li>
+</ul>
+</li>
+</ul>
+<h1 id="react-directory-structure">React directory structure</h1>
+<p><img src="day2/image-1.png" alt="react directory"></p>
+<blockquote>
+<p>Public folder's content doesn't get bundled , They are just copied while making stuff</p>
+</blockquote>
+<h1 id="day3">day3</h1>
+<h1 id="create-first-app">Create First app</h1>
+<ul>
+<li><code>npx create-next-app@latest</code>  &gt;I have no clue</li>
+<li><code>npm create vite@latest</code></li>
+</ul>
+<h1 id="render-method-createelement-method-and-reactdom-render-method">render method, createElement method and ReactDom render method</h1>
+<p><img src="day3/image.png" alt="render">
+<img src="day3/image-1.png" alt="createElement">
+<img src="day3/image-2.png" alt="ReactDom"></p>
+<h1 id="fragments">Fragments</h1>
+<p>it is used to group a list of children without adding extra nodes to the dom</p>
+<ul>
+<li>&lt;&gt;&lt;/&gt;</li>
+<li>&lt;React.Fragment&gt;&lt;/React.Fragment&gt;</li>
+</ul>
+<h1 id="components">Components</h1>
+<p><img src="day3/image-4.png" alt="alt text"></p>
+<h1 id="day4">day4</h1>
+<h1 id="compose-components-in-reactjs">Compose Components in ReactJS</h1>
+<ul>
+<li>Did last day</li>
+</ul>
+<h1 id="differece-between-functional-and-class-component">differece between functional and class Component</h1>
+<ul>
+<li>
+<p>Use functional components if we are writting a presentational component which doesn't have it's own state or needs to access a lifecycle hook. You cannot use setState() in your component because FUnctional Components are pure Javascript function.</p>
+<blockquote>
+<p><strong>Note</strong>:- After 16.8 update it has useState and UseEffect and other hhoks to manage state and lifecycle logic</p>
+</blockquote>
+</li>
+<li>
+<p>Class Components
+Definition: ES6 classes that extend React.Component and must have a render() method returning JSX.</p>
+<p>State: Can use this.state and this.setState() to manage state.</p>
+<p>Lifecycle Methods: Support built-in lifecycle methods like componentDidMount(), componentDidUpdate(), etc.</p>
+</li>
+</ul>
+<h1 id="jsx">JSX</h1>
+<p>JSX stands for JavaScript XML. It is a extension to JavaScript. Jsx is a preprocessor step that XML syntax</p>
+<p>It produces React Element
+It is easier to understand
+in {} we have to use them for writting js directly!
+<a href="image.png">alt text</a></p>
+<p><img src="day4/image-1.png" alt="alt text"></p>
+<h1 id="props">Props</h1>
+<ul>
+<li>It is the jsx attributes</li>
+<li>
+<blockquote>
+<p><strong>Note</strong> -&gt; Each element name should be in capital Letter</p>
+</blockquote>
+</li>
+<li>In class based components we have to use this.props.<propsname> to acess them</li>
+</ul>
+<h1 id="proptype">PropType</h1>
+<ul>
+<li>It is used to make sure the type of the properties
+<ul>
+<li>At first Installation<pre class="hljs"><code><div>npm install --save prop-types
+</div></code></pre>
+</li>
+<li>then<pre class="hljs"><code><div><span class="hljs-keyword">import</span> PropTypes <span class="hljs-keyword">from</span> <span class="hljs-string">'prop-types'</span>;
+Student.propTypes ={
+    <span class="hljs-attr">name</span>: PropTypes.string
+}
+
+Student.propTypes ={
+    <span class="hljs-attr">name</span>: PropTypes.string.isRequired <span class="hljs-comment">// It is for is required logic means u can't pass null</span>
+}
+Student.defaultProps ={
+    <span class="hljs-attr">name</span>: <span class="hljs-string">"&lt;default value&gt;"</span>
+}
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="day5">day5</h1>
+<h2 id="%E2%9C%85-children-in-jsx">✅ Children in JSX</h2>
+<ul>
+<li>
+<p>In <strong>JSX</strong>, any content placed between an opening and closing tag is passed to the component as a special prop called <code>props.children</code>.</p>
+<ul>
+<li>
+<p>Example:</p>
+<pre class="hljs"><code><div>&lt;Student&gt;Hello, I’m a child!&lt;<span class="hljs-regexp">/Student&gt;
+</span></div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="%E2%9C%85-functional-component-example">✅ Functional Component Example</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+
+<span class="hljs-keyword">const</span> Student = <span class="hljs-function">(<span class="hljs-params">props</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{props.children}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Student;
+</div></code></pre>
+<hr>
+<h3 id="%E2%9C%85-class-component-example">✅ Class Component Example</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+  render() {
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{this.props.children}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Student;
+</div></code></pre>
+<hr>
+<h2 id="%E2%9C%85-state-in-react">✅ State in React</h2>
+<p><strong>State</strong> is used to manage dynamic data in a component. It is <strong>private</strong> to the component and determines how the component renders and behaves.</p>
+<hr>
+<h3 id="%E2%9D%8C-outdated-statement">❌ Outdated Statement:</h3>
+<blockquote>
+<p><s>We can create state only in class components.</s>
+✅ <strong>Correct:</strong> With the introduction of <strong>Hooks</strong>, we can now create state in <strong>functional components</strong> as well.</p>
+</blockquote>
+<hr>
+<h3 id="%E2%9C%85-3-ways-to-declare-state">✅ 3 Ways to Declare State</h3>
+<hr>
+<h3 id="1%EF%B8%8F%E2%83%A3-functional-component-with-usestate-modern-%E2%80%93-recommended">1️⃣ Functional Component with <code>useState</code> (Modern – Recommended)</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> React, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+
+<span class="hljs-keyword">const</span> Student = <span class="hljs-function">(<span class="hljs-params">props</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> [name, setName] = useState(<span class="hljs-string">"Rahul"</span>);
+  <span class="hljs-keyword">const</span> [roll, setRoll] = useState(props.roll);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      {name} - {roll}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Student;
+</div></code></pre>
+<hr>
+<h3 id="2%EF%B8%8F%E2%83%A3-class-component-%E2%80%93-directly-inside-class-old-but-valid">2️⃣ Class Component – Directly Inside Class (Old but Valid)</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+  state = {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">"Rahul"</span>,
+    <span class="hljs-attr">roll</span>: <span class="hljs-keyword">this</span>.props.roll,
+  };
+
+  render() {
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        {this.state.name} - {this.state.roll}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    );
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Student;
+</div></code></pre>
+<hr>
+<h3 id="3%EF%B8%8F%E2%83%A3-class-component-%E2%80%93-inside-constructor-older-style">3️⃣ Class Component – Inside Constructor (Older Style)</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+  <span class="hljs-keyword">constructor</span>(props) {
+    <span class="hljs-keyword">super</span>(props);
+    <span class="hljs-keyword">this</span>.state = {
+      <span class="hljs-attr">name</span>: <span class="hljs-string">"Rahul"</span>,
+      <span class="hljs-attr">roll</span>: <span class="hljs-keyword">this</span>.props.roll,
+    };
+  }
+
+  render() {
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        {this.state.name} - {this.state.roll}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    );
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Student;
+</div></code></pre>
+<p><img src="day5/image.png" alt="Important stuff"></p>
+<h2 id="event-handling">Event Handling</h2>
+<p>The actions to which JavaScript can respond are called Events.
+<img src="day5/image-1.png" alt="alt text"></p>
+<blockquote>
+<p>now this works kinda different in js . it behaves differently depending on the situations.
+<strong>If in interview they ask to implement this without implementing it using arrow function</strong>  <img src="day5/image-2.png" alt="alt text"></p>
+</blockquote>
+<hr>
+<ul>
+<li>
+<p>✅ Mouse Events</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onClick</code></td>
+<td>User clicks on an element</td>
+</tr>
+<tr>
+<td><code>onDoubleClick</code></td>
+<td>User double-clicks on an element</td>
+</tr>
+<tr>
+<td><code>onMouseDown</code></td>
+<td>Mouse button is pressed</td>
+</tr>
+<tr>
+<td><code>onMouseUp</code></td>
+<td>Mouse button is released</td>
+</tr>
+<tr>
+<td><code>onMouseEnter</code></td>
+<td>Cursor enters an element (no bubbling)</td>
+</tr>
+<tr>
+<td><code>onMouseLeave</code></td>
+<td>Cursor leaves an element (no bubbling)</td>
+</tr>
+<tr>
+<td><code>onMouseMove</code></td>
+<td>Mouse is moved over an element</td>
+</tr>
+<tr>
+<td><code>onMouseOver</code></td>
+<td>Mouse is over an element or its children</td>
+</tr>
+<tr>
+<td><code>onMouseOut</code></td>
+<td>Mouse leaves an element or its children</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>✅ Keyboard Events</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onKeyDown</code></td>
+<td>Key is pressed down</td>
+</tr>
+<tr>
+<td><code>onKeyPress</code></td>
+<td>Key is pressed (deprecated, use <code>onKeyDown</code>)</td>
+</tr>
+<tr>
+<td><code>onKeyUp</code></td>
+<td>Key is released</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>✅ Form Events</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onChange</code></td>
+<td>Value of input/textarea/select changes</td>
+</tr>
+<tr>
+<td><code>onInput</code></td>
+<td>User input in text field</td>
+</tr>
+<tr>
+<td><code>onSubmit</code></td>
+<td>Form submission</td>
+</tr>
+<tr>
+<td><code>onReset</code></td>
+<td>Form reset</td>
+</tr>
+<tr>
+<td><code>onInvalid</code></td>
+<td>Form field validation fails</td>
+</tr>
+<tr>
+<td><code>onSelect</code></td>
+<td>Text is selected in input/textarea</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>✅ Focus Events</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onFocus</code></td>
+<td>Element receives focus</td>
+</tr>
+<tr>
+<td><code>onBlur</code></td>
+<td>Element loses focus</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>✅ Clipboard Events</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onCopy</code></td>
+<td>Copy operation triggered</td>
+</tr>
+<tr>
+<td><code>onCut</code></td>
+<td>Cut operation triggered</td>
+</tr>
+<tr>
+<td><code>onPaste</code></td>
+<td>Paste operation triggered</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>✅ Composition Events</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onCompositionStart</code></td>
+<td>Composition starts (IME)</td>
+</tr>
+<tr>
+<td><code>onCompositionUpdate</code></td>
+<td>During composition</td>
+</tr>
+<tr>
+<td><code>onCompositionEnd</code></td>
+<td>Composition ends</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>✅ Touch Events (Mobile)</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onTouchStart</code></td>
+<td>Finger touches the screen</td>
+</tr>
+<tr>
+<td><code>onTouchMove</code></td>
+<td>Finger moves on screen</td>
+</tr>
+<tr>
+<td><code>onTouchEnd</code></td>
+<td>Finger lifted from screen</td>
+</tr>
+<tr>
+<td><code>onTouchCancel</code></td>
+<td>Touch event interrupted</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>✅ Pointer Events</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onPointerDown</code></td>
+<td>Pointer is pressed down</td>
+</tr>
+<tr>
+<td><code>onPointerMove</code></td>
+<td>Pointer is moved</td>
+</tr>
+<tr>
+<td><code>onPointerUp</code></td>
+<td>Pointer is released</td>
+</tr>
+<tr>
+<td><code>onPointerCancel</code></td>
+<td>Pointer is canceled</td>
+</tr>
+<tr>
+<td><code>onPointerEnter</code></td>
+<td>Pointer enters element</td>
+</tr>
+<tr>
+<td><code>onPointerLeave</code></td>
+<td>Pointer leaves element</td>
+</tr>
+<tr>
+<td><code>onPointerOver</code></td>
+<td>Pointer is over element or child</td>
+</tr>
+<tr>
+<td><code>onPointerOut</code></td>
+<td>Pointer leaves element or child</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>✅ UI Events</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onScroll</code></td>
+<td>Element is scrolled</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>✅ Wheel Events</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onWheel</code></td>
+<td>Mouse wheel or trackpad used</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>✅ Media Events</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onAbort</code></td>
+<td>Media load aborted</td>
+</tr>
+<tr>
+<td><code>onCanPlay</code></td>
+<td>Media can start playing</td>
+</tr>
+<tr>
+<td><code>onCanPlayThrough</code></td>
+<td>Media can play through</td>
+</tr>
+<tr>
+<td><code>onDurationChange</code></td>
+<td>Duration metadata loaded</td>
+</tr>
+<tr>
+<td><code>onEmptied</code></td>
+<td>Media becomes empty</td>
+</tr>
+<tr>
+<td><code>onEncrypted</code></td>
+<td>Encrypted media encountered</td>
+</tr>
+<tr>
+<td><code>onEnded</code></td>
+<td>Playback reaches end</td>
+</tr>
+<tr>
+<td><code>onLoadedData</code></td>
+<td>Media data loaded</td>
+</tr>
+<tr>
+<td><code>onLoadedMetadata</code></td>
+<td>Metadata (duration, etc.) loaded</td>
+</tr>
+<tr>
+<td><code>onLoadStart</code></td>
+<td>Media loading started</td>
+</tr>
+<tr>
+<td><code>onPause</code></td>
+<td>Media is paused</td>
+</tr>
+<tr>
+<td><code>onPlay</code></td>
+<td>Media is starting to play</td>
+</tr>
+<tr>
+<td><code>onPlaying</code></td>
+<td>Media is playing</td>
+</tr>
+<tr>
+<td><code>onProgress</code></td>
+<td>Media is downloading</td>
+</tr>
+<tr>
+<td><code>onRateChange</code></td>
+<td>Playback rate changed</td>
+</tr>
+<tr>
+<td><code>onSeeked</code></td>
+<td>Seek operation completed</td>
+</tr>
+<tr>
+<td><code>onSeeking</code></td>
+<td>Seeking in progress</td>
+</tr>
+<tr>
+<td><code>onStalled</code></td>
+<td>Fetching media is stalled</td>
+</tr>
+<tr>
+<td><code>onSuspend</code></td>
+<td>Media fetch suspended</td>
+</tr>
+<tr>
+<td><code>onTimeUpdate</code></td>
+<td>Time indicated by the <code>currentTime</code></td>
+</tr>
+<tr>
+<td><code>onVolumeChange</code></td>
+<td>Volume changed</td>
+</tr>
+<tr>
+<td><code>onWaiting</code></td>
+<td>Playback is waiting for more data</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>✅ Image Events</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onLoad</code></td>
+<td>Image or iframe is loaded</td>
+</tr>
+<tr>
+<td><code>onError</code></td>
+<td>Error occurred while loading</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>✅ Animation Events</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onAnimationStart</code></td>
+<td>CSS animation starts</td>
+</tr>
+<tr>
+<td><code>onAnimationEnd</code></td>
+<td>CSS animation ends</td>
+</tr>
+<tr>
+<td><code>onAnimationIteration</code></td>
+<td>CSS animation repeats</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>✅ Transition Events</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onTransitionEnd</code></td>
+<td>CSS transition completes</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>✅ Drag Events</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onDrag</code></td>
+<td>Element is being dragged</td>
+</tr>
+<tr>
+<td><code>onDragStart</code></td>
+<td>Dragging starts</td>
+</tr>
+<tr>
+<td><code>onDragEnd</code></td>
+<td>Dragging ends</td>
+</tr>
+<tr>
+<td><code>onDragEnter</code></td>
+<td>Draggable enters a target</td>
+</tr>
+<tr>
+<td><code>onDragLeave</code></td>
+<td>Draggable leaves a target</td>
+</tr>
+<tr>
+<td><code>onDragOver</code></td>
+<td>Draggable is over a target</td>
+</tr>
+<tr>
+<td><code>onDrop</code></td>
+<td>Dropped on a target</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<hr>
+<h2 id="setstate">setState</h2>
+<p>In React, setState is a method used to update the state of a component. It triggers a re-render with the new state.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  <span class="hljs-keyword">constructor</span>(props) {
+    <span class="hljs-keyword">super</span>(props);
+    <span class="hljs-keyword">this</span>.state = { <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> };
+  }
+
+  increment = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">this</span>.setState({ <span class="hljs-attr">count</span>: <span class="hljs-keyword">this</span>.state.count + <span class="hljs-number">1</span> });
+  };
+
+  render() {
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.increment}</span>&gt;</span>Count: {this.state.count}<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>;
+  }
+}
+</div></code></pre>
+<ul>
+<li>
+<p>Asynchronous: setState doesn’t update the state immediately.</p>
+</li>
+<li>
+<p>Batched Updates: React may combine multiple setState calls for performance.</p>
+</li>
+<li>
+<p>Function Form (when new state depends on previous state):</p>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">this</span>.setState(<span class="hljs-function">(<span class="hljs-params">prevState</span>) =&gt;</span> ({ <span class="hljs-attr">count</span>: prevState.count + <span class="hljs-number">1</span> }));
+</div></code></pre>
+<h2 id="passing-arguments-to-event-handlers-in-reactjs">Passing Arguments to Event handlers in ReactJS</h2>
+<p><img src="day5/image-3.png" alt="alt text"></p>
+<blockquote>
+<p>inplace of the extra function we can pass it as arroow function inside the jsx/tsx itself</p>
+</blockquote>
+<p>there's also another way</p>
+<pre class="hljs"><code><div>&lt;button onClick={<span class="hljs-keyword">this</span>.handleClick.bind(<span class="hljs-keyword">this</span>, id)}&gt;Delete&lt;<span class="hljs-regexp">/button&gt;
+</span></div></code></pre>
+<h1 id="day6">day6</h1>
+<h1 id="life-cycle-of-components-in-react">Life Cycle of Components in React</h1>
+<p>In React, components go through a lifecycle of events from creation to destruction. Understanding these lifecycle methods is crucial for managing side effects, optimizing performance, and ensuring that your components behave as expected.
+they are divided into three main phases:</p>
+<ol>
+<li><strong>Mounting</strong>: When an instance of a component is being created and inserted into the DOM.</li>
+<li><strong>Updating</strong>: When a component is being re-rendered as a result of changes to either its props or state.</li>
+<li><strong>Unmounting</strong>: When a component is being removed from the DOM.</li>
+<li><strong>Error Handling</strong>: When an error occurs during rendering, in a lifecycle method, or in the constructor of any child component.</li>
+</ol>
+<h1 id="mounting">mounting:-</h1>
+<ul>
+<li>Mounting is the process of creating an element and inserting it in a DOM tree</li>
+</ul>
+<p>Following methgods are called in the following order when an instance of a component is being created and inserted into the DOM</p>
+<ul>
+<li><strong>constructor</strong></li>
+<li>static getDerivedStateFromProps</li>
+<li><strong>render</strong></li>
+<li><strong>componentDidMount</strong></li>
+</ul>
+<h2 id="constructor">Constructor</h2>
+<p>The constructor is called before a React component is called before it is mounted.
+When implementing the constructor for a React.Component subclass , you should call super(props) before any other statement. Otherwise, this.props will be undefined in the constructor, which can lead to bugs.</p>
+<p>React Constructors are used only for 2 purpose</p>
+<ul>
+<li>Initializing local state by assiginig an object to this.state</li>
+<li>binding event handler methods to an instance.
+<img src="day6/image.png" alt="alt text"></li>
+</ul>
+<h2 id="getderivedstatefromprops">getDerivedStateFromProps</h2>
+<p>getDerivedStateFromProps is invoked right before calling the render method, both on the initial mount and on subsequent updates. It should return an object to update state, or null to update nothing. Yhis method exists for rare use cases where the state depends on changes in props over time. It is a static method, so it does not have access to this.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">static</span> getDerivedStateFromProps(props, state) {
+  <span class="hljs-comment">// Return an object to update state, or null to update nothing.</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+}
+</div></code></pre>
+<h2 id="render">Render</h2>
+<p>The render() method is the only required method in a class component. It examines this.props and this.state.
+It returns one of the following types:</p>
+<ul>
+<li>React elements - These are created via JSX(Not required).
+For example, <div /> and <App/> are React elements that instruct React to render a DOM node, or another user-defined component, respectively.</li>
+<li>Arrays and fragments It is used to return multiple elements from render.</li>
+<li>Portals It is used to render children into a different DOM subtree.</li>
+<li>String and numbers - These are rendered as text nodes in the DOM.</li>
+<li>Booleans or null It renders nothing. (Mostly exists to support return test &amp;&amp; &lt;Child pattern, where test is boolean.)</li>
+</ul>
+<blockquote>
+<p>Note The render() function should be pure, meaning that it does not modify component state, it returns the same result each time it's invoked, and it does not directly interact with the browser.</p>
+</blockquote>
+<h2 id="componentdidmount">componentDidMount</h2>
+<p>componentDidMount is invoked immediately after a component is mounted. This method is executed once, only on the client side, and is a good place to initiate network requests, set up subscriptions, or perform any setup that requires DOM nodes.</p>
+<pre class="hljs"><code><div>componentDidMount() {
+  <span class="hljs-comment">// Perform setup that requires DOM nodes or network requests.</span>
+}
+</div></code></pre>
+<h1 id="updating">Updating:-</h1>
+<p>Updating is the process of changing state or props of an element in a DOM tree.</p>
+<p>An update can be caused by changes to either the component's props or state. The following methods are called in the following order when a component is being re-rendered as a result of changes to either its props or state:</p>
+<ul>
+<li>static getDerivedStateFromProps</li>
+<li>shouldComponentUpdate</li>
+<li><strong>render</strong></li>
+<li>getSnapshotBeforeUpdate</li>
+<li><strong>componentDidUpdate</strong></li>
+</ul>
+<h3 id="getderivedstatefromprops">getDerivedStateFromProps</h3>
+<p>This method is invoked right before calling the render method, both on the initial mount and on subsequent updates. It should return an object to update state, or null to update nothing. This method exists for rare use cases where the state depends on changes in props over time. It is a static method, so it does not have access to <code>this</code>.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">static</span> getDerivedStateFromProps(props, state) {
+  <span class="hljs-comment">// Return an object to update state, or null to update nothing.</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+}
+</div></code></pre>
+<p>Let's say we have 2 components, <code>Parent</code> and <code>Child</code>, where <code>Child</code> receives props from <code>Parent</code>. If <code>Parent</code> updates its state, <code>Child</code> will re-render. If you want to update the state of <code>Child</code> based on the new props it receives, you can use <code>getDerivedStateFromProps</code>.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+        <span class="hljs-keyword">this</span>.state = { <span class="hljs-attr">value</span>: <span class="hljs-number">0</span> };
+    }
+    increment = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        <span class="hljs-keyword">this</span>.setState({ <span class="hljs-attr">value</span>: <span class="hljs-keyword">this</span>.state.value + <span class="hljs-number">1</span> });
+    };
+    render() {
+        <span class="hljs-keyword">return</span> (
+            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Child</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{this.state.value}</span> /&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.increment}</span>&gt;</span>Increment<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+        );
+}
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+        <span class="hljs-keyword">this</span>.state = { <span class="hljs-attr">derivedValue</span>: <span class="hljs-number">0</span> };
+    }
+    <span class="hljs-keyword">static</span> getDerivedStateFromProps(Props, State) {
+        <span class="hljs-comment">// Update derivedValue based on the new props</span>
+        <span class="hljs-keyword">if</span> (Props.value !== State.derivedValue) {
+            <span class="hljs-keyword">return</span> { <span class="hljs-attr">derivedValue</span>: Props.value };
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>; <span class="hljs-comment">// No state update needed</span>
+    }
+    render() {
+        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Derived Value: {this.state.derivedValue}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+    }
+}
+</div></code></pre>
+<h3 id="shouldcomponentupdate">shouldComponentUpdate</h3>
+<p>shouldComponentUpdate is invoked before rendering when new props or state are received. It allows you to control whether a component should re-render or not. If it returns false, the component will not re-render. This method is useful for optimizing performance by preventing unnecessary renders.</p>
+<pre class="hljs"><code><div>shouldComponentUpdate(nextProps, nextState) {
+  <span class="hljs-comment">// Return true to allow re-render, false to prevent it.</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>; <span class="hljs-comment">// or false based on your logic</span>
+}
+</div></code></pre>
+<p>For example, if you have a component that receives props frequently but doesn't need to update its UI, you can use shouldComponentUpdate to prevent unnecessary re-renders.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    shouldComponentUpdate(nextProps, nextState) {
+        <span class="hljs-comment">// Prevent re-render if props haven't changed</span>
+        <span class="hljs-keyword">return</span> nextProps.value !== <span class="hljs-keyword">this</span>.props.value;
+    }
+    render() {
+        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{this.props.value}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+    }
+}
+</div></code></pre>
+<h3 id="getsnapshotbeforeupdate">getSnapshotBeforeUpdate</h3>
+<p>This method is invoked right before the most recently rendered output is committed to the DOM. It allows you to capture some information (snapshot) from the DOM before it changes. The value returned by this method is passed as a third parameter to componentDidUpdate.</p>
+<pre class="hljs"><code><div>getSnapshotBeforeUpdate(prevProps, prevState) {
+  <span class="hljs-comment">// Capture some information from the DOM before it changes.</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>; <span class="hljs-comment">// or some value to be used in componentDidUpdate</span>
+}
+</div></code></pre>
+<p>For example, if you want to capture the scroll position of a list before it updates, you can use getSnapshotBeforeUpdate:</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        <span class="hljs-comment">// Capture the scroll position before the update</span>
+        <span class="hljs-keyword">const</span> list = <span class="hljs-keyword">this</span>.listRef.current;
+        <span class="hljs-keyword">return</span> list.scrollTop; <span class="hljs-comment">// Return the scroll position</span>
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        <span class="hljs-comment">// Use the snapshot to restore the scroll position after the update</span>
+        <span class="hljs-keyword">const</span> list = <span class="hljs-keyword">this</span>.listRef.current;
+        <span class="hljs-keyword">if</span> (snapshot !== <span class="hljs-literal">null</span>) {
+            list.scrollTop = snapshot; <span class="hljs-comment">// Restore the scroll position</span>
+        }
+    }
+    render() {
+        <span class="hljs-keyword">return</span> (
+            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">{this.listRef}</span>&gt;</span>
+                {/* Render list items here */}
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+        );
+    }
+}
+</div></code></pre>
+<h3 id="componentdidupdate">componentDidUpdate</h3>
+<p>componentDidUpdate is invoked immediately after updating occurs. This method is not called for the initial render. It is a good place to perform side effects, such as network requests or DOM manipulations, based on the updated props or state. It receives three parameters: prevProps, prevState, and snapshot (if getSnapshotBeforeUpdate is used).
+It will not get called if shouldComponentUpdate returns false.</p>
+<pre class="hljs"><code><div>componentDidUpdate(prevProps, prevState, snapshot) {
+  <span class="hljs-comment">// Perform side effects based on the updated props or state.</span>
+  <span class="hljs-comment">// prevProps and prevState are the previous values before the update.</span>
+  <span class="hljs-comment">// snapshot is the value returned by getSnapshotBeforeUpdate, if used.</span>
+}
+</div></code></pre>
+<p>For example, if you want to fetch new data based on updated props, you can use componentDidUpdate:</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DataFetcher</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    componentDidUpdate(prevProps) {
+        <span class="hljs-comment">// Fetch new data if the props have changed</span>
+        <span class="hljs-keyword">if</span> (prevProps.id !== <span class="hljs-keyword">this</span>.props.id) {
+            <span class="hljs-keyword">this</span>.fetchData(<span class="hljs-keyword">this</span>.props.id);
+        }
+    }
+    fetchData(id) {
+        <span class="hljs-comment">// Fetch data based on the provided id</span>
+        fetch(<span class="hljs-string">`/api/data/<span class="hljs-subst">${id}</span>`</span>)
+            .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())
+            .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> {
+                <span class="hljs-keyword">this</span>.setState({ data });
+            });
+    }
+    render() {
+        <span class="hljs-keyword">return</span> (
+            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+                {/* Render fetched data here */}
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+        );
+    }
+}
+</div></code></pre>
+<hr>
+<h1 id="life-cycle-diagram">Life Cycle Diagram</h1>
+<pre class="hljs"><code><div>+-------------------------------+
+|   getDerivedStateFromProps() |
++-------------------------------+
+<span class="hljs-code">              ↓</span>
++-------------------------------+
+|    shouldComponentUpdate()   |
++-------------------------------+
+<span class="hljs-code">     ↓ Yes           ↓ No</span>
+  +--------+        Skip Render
+  | render |
+  +--------+
+<span class="hljs-code">      ↓</span>
++-------------------------------+
+| getSnapshotBeforeUpdate()    |
++-------------------------------+
+<span class="hljs-code">              ↓</span>
++-------------------------------+
+|   componentDidUpdate()       |
++-------------------------------+
+</div></code></pre>
+<h1 id="unmounting">Unmounting:-</h1>
+<p>Unmounting is the process of removing a component from the DOM. The following method is called when a component is being removed from the DOM:</p>
+<ul>
+<li><strong>componentWillUnmount</strong></li>
+</ul>
+<h3 id="componentwillunmount">componentWillUnmount</h3>
+<p>componentWillUnmount is invoked immediately before a component is unmounted and destroyed. This method is used to perform any necessary cleanup, such as cancelling network requests, removing event listeners, or cleaning up timers.</p>
+<pre class="hljs"><code><div>componentWillUnmount() {
+  <span class="hljs-comment">// Perform cleanup before the component is removed from the DOM.</span>
+}
+</div></code></pre>
+<p>For example, if you have a component that sets up a timer, you can use componentWillUnmount to clear the timer when the component is about to be removed:</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TimerComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    componentDidMount() {
+        <span class="hljs-keyword">this</span>.timer = setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+            <span class="hljs-keyword">this</span>.setState({ <span class="hljs-attr">time</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>() });
+        }, <span class="hljs-number">1000</span>);
+    }
+    componentWillUnmount() {    
+        clearInterval(<span class="hljs-keyword">this</span>.timer); <span class="hljs-comment">// Clear the timer when the component is unmounted</span>
+    }
+    render() {
+        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Current Time: {this.state.time.toLocaleTimeString()}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+    }
+}
+</div></code></pre>
+<h1 id="hooks">Hooks</h1>
+<p>Hooks are functions that let you use state and other React features without writing a class. They allow you to manage component lifecycle, state, and side effects in functional components.</p>
+<p>when to use hooks:</p>
+<ul>
+<li>When you want to use state in a functional component.</li>
+</ul>
+<p>Rules of Hooks:</p>
+<ul>
+<li>Only call hooks at the top level of your React function. Don't call hooks inside loops, conditions, or nested functions.</li>
+<li>Only call hooks from React function components or custom hooks. Don't call hooks from regular JavaScript functions.</li>
+<li>React relies on the order of hooks calls to maintain state consistency. If you change the order of hooks, it can lead to bugs.</li>
+<li>Hooks don't work inside class components. They are designed for functional components only.</li>
+</ul>
+<h2 id="usestate">UseState</h2>
+<p>useState is a Hook that lets you add state to your functional components. we call it inside a functional component to declare a state variable and a function to update it.
+Usestate returns an array with two elements: the current state value and a function to update that state value.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> React, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Counter</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">// Declare a state variable called count, initialized to 0</span>
+  <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">0</span>);
+  muhehehe = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-comment">// Update the count state when the button is clicked</span>
+    setCount(count + <span class="hljs-number">1</span>);
+  };
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>You clicked {count} times<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      {/* Update the count state when the button is clicked */}
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{muhehehe}</span>&gt;</span>
+        Click me
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+</div></code></pre>
+<h2 id="useeffect">UseEffect</h2>
+<p>useEffect is a Hook that lets you perform side effects in your functional components. It is called after the component renders and can be used for tasks like data fetching, subscriptions, or manually changing the DOM.
+useEffect takes two arguments: a function that contains the side effect logic and an optional dependency array that determines when the effect should run. If the dependency array is empty, the effect runs only once after the initial render. If it contains variables, the effect runs whenever those variables change.
+Basically it is used to replace the componentDidMount, componentDidUpdate, and componentWillUnmount lifecycle methods in class components.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> React, { useState, useEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ExampleComponent</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">0</span>);
+    useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        <span class="hljs-comment">// This effect runs after every render</span>
+        <span class="hljs-built_in">document</span>.title = <span class="hljs-string">`You clicked <span class="hljs-subst">${count}</span> times`</span>;
+        
+        <span class="hljs-comment">// Cleanup function (optional)</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Cleanup before the next effect or unmount'</span>);
+        };
+    }, [count]); <span class="hljs-comment">// The effect depends on the count variable</span>
+    <span class="hljs-keyword">return</span> (
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>You clicked {count} times<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> setCount(count + 1)}&gt;
+                Click me
+            <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    );
+}
+</div></code></pre>
+<p><img src="day6/image-1.png" alt="alt text"></p>
+<p><img src="day6/image-2.png" alt="alt text"></p>
+<p>It also takes an array of dependencies as the second argument. If any of the dependencies change, the effect will run again. If you pass an empty array, the effect will only run once after the initial render, similar to componentDidMount.</p>
+<pre class="hljs"><code><div>useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-comment">// This effect runs only once after the initial render</span>
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Component mounted'</span>);
+}, []); <span class="hljs-comment">// Empty dependency array</span>
+</div></code></pre>
+<h2 id="custom-hooks">Custom Hooks</h2>
+<p>A custom Hook is a JavaScript function, when we want to share logic between components, we can create a custom Hook. Custom Hooks allow you to extract component logic into reusable functions.</p>
+<blockquote>
+<p>Example of a custom Hook that manages a counter:
+<img src="day6/image-3.png" alt="alt text"></p>
+</blockquote>
+<h1 id="day7">day7</h1>
+<h1 id="conditional-rendering-in-react">Conditional Rendering in React</h1>
+<p><img src="day7/image.png" alt="alt text"></p>
+<p><img src="day7/image-1.png" alt="alt text"></p>
+<p><img src="day7/image-2.png" alt="alt text"></p>
+<p><img src="day7/image-3.png" alt="alt text"></p>
+<p><img src="day7/image-4.png" alt="alt text"></p>
+<p><strong>IIFE (Immediately Invoked Function Expression)</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> MyComponent = <span class="hljs-function">(<span class="hljs-params">{ user }</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      {
+        (() =&gt; {
+          if (user.isAdmin) {
+            return <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Welcome, Admin!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>;
+          } else {
+            return <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Welcome, User!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>;
+          }
+        })()
+      }
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+};
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> MyComponent;
+</div></code></pre>
+<h1 id="lists-in-react">Lists in React</h1>
+<p><img src="day7/image-5.png" alt="alt text"></p>
+<p><img src="day7/image-6.png" alt="alt text"></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> MyList = <span class="hljs-function">(<span class="hljs-params">{ items }</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+      {items.map((item, index) =&gt; (
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{index}</span>&gt;</span>{item}<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      ))}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span>
+  );
+};
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> MyList;
+</div></code></pre>
+<h1 id="keys-in-lists">keys in Lists</h1>
+<p><img src="day7/image-7.png" alt="alt text"></p>
+<h1 id="inline-styles-in-react">Inline Styles in React</h1>
+<p><img src="day7/image-8.png" alt="alt text"></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> MyComponent = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> divStyle = {
+    <span class="hljs-attr">color</span>: <span class="hljs-string">'blue'</span>,
+    <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">'lightgray'</span>,
+    <span class="hljs-attr">padding</span>: <span class="hljs-string">'10px'</span>,
+    <span class="hljs-attr">borderRadius</span>: <span class="hljs-string">'5px'</span>,
+  };
+
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{divStyle}</span>&gt;</span>Hello, Inline Styles!<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+};
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> MyComponent;
+</div></code></pre>
+<blockquote>
+<p>To apply both class
+<img src="day7/image-9.png" alt="alt text"></p>
+</blockquote>
+<h1 id="external-css-in-react">External CSS in React</h1>
+<p><img src="day7/image-10.png" alt="alt text"></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'./styles.css'</span>;
+<span class="hljs-keyword">const</span> MyComponent = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"my-class"</span>&gt;</span>Hello, External CSS!<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+};
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> MyComponent;
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.my-class</span> {
+  <span class="hljs-attribute">color</span>: green;
+  <span class="hljs-attribute">background-color</span>: lightyellow;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span>;
+  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">5px</span>;
+}
+</div></code></pre>
+<blockquote>
+<p>External CSS is global and can affect all components that use the same class names. To avoid conflicts, consider using CSS Modules or styled-components for scoped styles.</p>
+</blockquote>
+
+</body>
+</html>

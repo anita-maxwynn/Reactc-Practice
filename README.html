@@ -1624,6 +1624,220 @@ Basically it is used to replace the componentDidMount, componentDidUpdate, and c
 <p><img src="day8/image-11.png" alt="alt text"></p>
 <p><img src="day8/image-12.png" alt="alt text">
 <img src="day8/image-13.png" alt="alt text"></p>
+<h1 id="day9">day9</h1>
+<h1 id="controlled-compositions-in-react">Controlled Compositions in React</h1>
+<p>So in React, we often use controlled components to manage form inputs. This means that the component's state is controlled by React, and the input value is set via props.</p>
+<p>In case of a controlled input, the value of the input is set by the state of the component, and any changes to the input are handled by an event handler that updates the state.</p>
+<p>Suppose we have a html input element with a value set by the component's state:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"Hell no"</span> /&gt;</span>
+</div></code></pre>
+<p>and a react input component :-</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ControlledInput</span>(<span class="hljs-params"></span>) </span>{
+ <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"hell no"</span> /&gt;</span></span>
+  );
+}
+</div></code></pre>
+<p>We will see that the input value is set to &quot;hell no&quot; when the component renders. However, if we try to change the input value by typing in it, nothing will happen because the input is controlled by React and does not have an <code>onChange</code> handler to update the state. but The html input element will not throw an error.</p>
+<p>Now the solution is either to add an <code>onChange</code> handler to the input element or <code>defaultValue</code></p>
+<p>For the onChange handler, we can do something like this:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> React, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ControlledInput</span>(<span class="hljs-params"></span>) </span>{
+ <span class="hljs-keyword">const</span> [inputValue, setInputValue] = useState(<span class="hljs-string">''</span>);
+
+ <span class="hljs-keyword">const</span> handleChange = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+   setInputValue(e.target.value.toUpperCase());
+ };
+ <span class="hljs-keyword">return</span> (
+   <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+     <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span>
+     <span class="hljs-attr">value</span>=<span class="hljs-string">{inputValue}</span>
+     <span class="hljs-attr">onChange</span>=<span class="hljs-string">{handleChange}</span>
+   /&gt;</span></span>
+ );
+}
+</div></code></pre>
+<h1 id="managing-multiple-inputs">Managing multiple inputs</h1>
+<p>When dealing with multiple inputs, we can use a single state object to manage all input values.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> React, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ControlledInput</span>(<span class="hljs-params"></span>) </span>{
+ <span class="hljs-keyword">const</span> [formData, setFormData] = useState({
+   <span class="hljs-attr">firstName</span>: <span class="hljs-string">''</span>,
+   <span class="hljs-attr">lastName</span>: <span class="hljs-string">''</span>,
+ });
+
+ <span class="hljs-keyword">const</span> handleChange = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+   <span class="hljs-keyword">const</span> { name, value } = e.target;
+   setFormData(<span class="hljs-function">(<span class="hljs-params">prevData</span>) =&gt;</span> ({
+     ...prevData,
+     [name]: value.toUpperCase(),
+   }));
+ };
+
+ <span class="hljs-keyword">return</span> (
+   <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+       <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span>
+       <span class="hljs-attr">name</span>=<span class="hljs-string">"firstName"</span>
+       <span class="hljs-attr">value</span>=<span class="hljs-string">{formData.firstName}</span>
+       <span class="hljs-attr">onChange</span>=<span class="hljs-string">{handleChange}</span>
+     /&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+       <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span>
+       <span class="hljs-attr">name</span>=<span class="hljs-string">"lastName"</span>
+       <span class="hljs-attr">value</span>=<span class="hljs-string">{formData.lastName}</span>
+       <span class="hljs-attr">onChange</span>=<span class="hljs-string">{handleChange}</span>
+     /&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+ );
+}
+</div></code></pre>
+<h1 id="form-submission">Form submission</h1>
+<p>When submitting a form, we can handle the submission event and prevent the default behavior. We can then access the input values from the state.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> React, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ControlledInput</span>(<span class="hljs-params"></span>) </span>{
+ <span class="hljs-keyword">const</span> [formData, setFormData] = useState({
+   <span class="hljs-attr">firstName</span>: <span class="hljs-string">''</span>,
+   <span class="hljs-attr">lastName</span>: <span class="hljs-string">''</span>,
+ });
+
+ <span class="hljs-keyword">const</span> handleChange = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+   <span class="hljs-keyword">const</span> { name, value } = e.target;
+   setFormData(<span class="hljs-function">(<span class="hljs-params">prevData</span>) =&gt;</span> ({
+     ...prevData,
+     [name]: value.toUpperCase(),
+   }));
+ };
+
+ <span class="hljs-keyword">const</span> handleSubmit = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+   e.preventDefault();
+   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Form submitted:'</span>, formData);
+ };
+
+ <span class="hljs-keyword">return</span> (
+   <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">onSubmit</span>=<span class="hljs-string">{handleSubmit}</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+       <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span>
+       <span class="hljs-attr">name</span>=<span class="hljs-string">"firstName"</span>
+       <span class="hljs-attr">value</span>=<span class="hljs-string">{formData.firstName}</span>
+       <span class="hljs-attr">onChange</span>=<span class="hljs-string">{handleChange}</span>
+     /&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+       <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span>
+       <span class="hljs-attr">name</span>=<span class="hljs-string">"lastName"</span>
+       <span class="hljs-attr">value</span>=<span class="hljs-string">{formData.lastName}</span>
+       <span class="hljs-attr">onChange</span>=<span class="hljs-string">{handleChange}</span>
+     /&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span>
+ );
+}
+</div></code></pre>
+<h1 id="uncontrolled-components">Uncontrolled components</h1>
+<p>Uncontrolled components are those state is managed by the DOM, rather than relying on React to control it. This means that the component does not store its state in a React state variable, but instead relies on the DOM to keep track of the input values. To use uncontrolled components, we can use a <code>ref</code> to access the input value directly from the DOM.</p>
+<h2 id="ref">Ref</h2>
+<p>refs provide a way to access DOM nodes or React elements created in the render method. They can be used to directly interact with the DOM, bypassing the React state management.</p>
+<p>When to use refs:</p>
+<ul>
+<li>Managing focus, text selection, or media playback.</li>
+<li>Triggering imperative animations.</li>
+<li>Integrating with third-party DOM libraries.</li>
+</ul>
+<p>refs are created using <code>React.createRef()</code>[for class components] or the <code>useRef</code> [for functional components] hook in functional components. They can be attached to React elements via the <code>ref</code> attribute.
+Refs are commonly assigned to an instance prop</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> React, { useRef } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ControlledInput</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">const</span> inputRef = useRef(<span class="hljs-literal">null</span>);
+    <span class="hljs-keyword">const</span> handleSubmit = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+        e.preventDefault();
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Input value:'</span>, inputRef.current.value);
+    };
+    <span class="hljs-keyword">return</span> (
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">onSubmit</span>=<span class="hljs-string">{handleSubmit}</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">{inputRef}</span> /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span>
+    );
+}
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ControlledInput</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+        <span class="hljs-keyword">this</span>.inputRef = React.createRef();
+    }
+
+    handleSubmit = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+        e.preventDefault();
+        
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Input value:'</span>, <span class="hljs-keyword">this</span>.inputRef.current.value);
+    };
+
+    render() {
+        <span class="hljs-keyword">return</span> (
+            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">onSubmit</span>=<span class="hljs-string">{this.handleSubmit}</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">{this.inputRef}</span> /&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span>
+        );
+    }
+}
+</div></code></pre>
+<h2 id="accessing-refs">Accessing Refs</h2>
+<p>To access the value of an uncontrolled input, we can use the <code>current</code> property of the ref. This property points to the DOM element associated with the ref.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> React, { useRef } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ControlledInput</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">const</span> inputRef = useRef(<span class="hljs-literal">null</span>);
+    <span class="hljs-keyword">const</span> handleSubmit = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+        e.preventDefault();
+        inputRef.current.focus(); <span class="hljs-comment">// Focus the input</span>
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Input value:'</span>, inputRef.current.value);
+    };
+    <span class="hljs-keyword">return</span> (
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">onSubmit</span>=<span class="hljs-string">{handleSubmit}</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">{inputRef}</span> /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span>
+    );
+}
+</div></code></pre>
+<h1 id="callback-refs">callback refs</h1>
+<p>Callback refs are a way to create refs using a function instead of the <code>createRef</code> or <code>useRef</code> methods. They allow you to set the ref dynamically and can be useful for more complex scenarios where you need to perform additional logic when the ref is set or unset.
+<img src="day9/image.png" alt="alt text"></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> React, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ControlledInput</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> [inputValue, setInputValue] = useState(<span class="hljs-string">''</span>);
+  <span class="hljs-keyword">const</span> inputRef = <span class="hljs-function">(<span class="hljs-params">node</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (node) {
+      node.focus(); <span class="hljs-comment">// Focus the input when it is mounted</span>
+    }
+  };
+
+  <span class="hljs-keyword">const</span> handleChange = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+    setInputValue(e.target.value);
+  };
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+        <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span>
+        <span class="hljs-attr">value</span>=<span class="hljs-string">{inputValue}</span>
+        <span class="hljs-attr">onChange</span>=<span class="hljs-string">{handleChange}</span>
+        <span class="hljs-attr">ref</span>=<span class="hljs-string">{inputRef}</span> // <span class="hljs-attr">Using</span> <span class="hljs-attr">callback</span> <span class="hljs-attr">ref</span>
+      /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+</div></code></pre>
 
 </body>
 </html>
